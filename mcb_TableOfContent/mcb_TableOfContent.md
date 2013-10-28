@@ -7,6 +7,9 @@ Copyright (c) 2013 mcbSolutions.at
 
 **Version** 0.0 alpha
 
+
+Please report errors.
+
 Description
 =============================================================================
 Generates a table of contents for the current page.
