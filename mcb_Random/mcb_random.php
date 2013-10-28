@@ -1,11 +1,13 @@
 <?php
 
 /**
- * @see mcb_Random.mb for further details
+ * @see README.mb for further details
  *
- * @author Michael Büchel
- * @link http://www.mcbSolutions.at/
- * @license http://opensource.org/licenses/MIT
+ * @package Pico
+ * @subpackage mcb_Random
+ * @version 0.0.0 alpha
+ * @author mcbSolutions.at <dev@mcbsolutions.at>
+
  */
 class mcb_Random {
 
