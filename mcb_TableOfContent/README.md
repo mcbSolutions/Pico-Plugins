@@ -1,18 +1,11 @@
-mcb_TableOfContent
+TableOfContent
 =============================================================================
 
-Released under the [MIT license](http://opensource.org/licenses/MIT).
+Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-Copyright (c) 2013 mcbSolutions.at
+**Version** 0.0 alpha; Please report errors.
 
-**Version** 0.0 alpha
-
-
-Please report errors.
-
-Description
-=============================================================================
-Generates a table of contents for the current page.
+**Generates a table of contents for the current page.**
 
 Installation
 =============================================================================
