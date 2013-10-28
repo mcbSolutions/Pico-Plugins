@@ -7,4 +7,8 @@ Plugins for [Pico]
     
   Generates a table of contents for the current page.
 
+* Blog
+  
+  Better organize a blog
+
 [Pico]:(http://pico.dev7studios.com)

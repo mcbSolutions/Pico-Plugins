@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @see mcb_TableOfContent.mb for further details
+ * @see README.mb for further details
  * 
  * @package Pico
- * @subpackage mcb toc
- * @version 0.0.0 beta
+ * @subpackage mcb_TableOfContent
+ * @version 0.0.0 alpha
  * @author mcbSolutions.at <dev@mcbsolutions.at>
  */
 class mcb_TableOfContent {
