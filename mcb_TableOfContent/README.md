@@ -22,11 +22,39 @@ index.html
 Optional: Config
 -----------------------------------------------------------------------------
 
-	$config['mcb_toc_depth']		= 3;					// int ..... Only display header h1 to hn (where n is 1-6)
-	$config['mcb_toc_min_headers']	= 3;					// int ..... Only generate Table of content with at least n headers
-	$config['mcb_toc_top_txt']		= 'Top';				// string .. Text to display for "Move to top"
-	$config['mcb_toc_caption']		= 'Table of contents';	// string .. Text to display as caption for the table of contents
-	$config['mcb_toc_anchor']       = false;				// bool .... Set to false, if you like to add your own anchor
+### mcb_toc_depth
+**integer**
+
+Only display header h1 to h`n` (where `n` is 1-6)
+
+	$config['mcb_toc_depth']		= 3;
+	
+### mcb_toc_min_headers
+**integer**
+
+Only generate Table of content with at least `n` headers
+
+	$config['mcb_toc_min_headers']	= 3;	
+	
+### mcb_toc_top_txt					
+**string**
+
+Text to display for "Move to top"
+	$config['mcb_toc_top_txt']		= 'Top';				
+	
+### mcb_toc_caption
+**string**
+
+Text to display as caption for the table of contents
+
+	$config['mcb_toc_caption']		= 'Table of contents';
+	
+### mcb_toc_anchor
+**bool**
+
+Set to false, if you like to add your own anchor
+
+	$config['mcb_toc_anchor']       = false;
 	
 **Note**
 
