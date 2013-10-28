@@ -1,4 +1,10 @@
-Pico-Plugins
-============
+mcbSolutions Pico-Plugins
+=========================
 
-Plugins for Pico - Pico is a stupidly simple, blazing fast, flat file CMS.
+Plugins for [Pico]
+
+* TableOfContent
+    
+  Generates a table of contents for the current page.
+
+[Pico]:(http://pico.dev7studios.com)
