@@ -13,10 +13,10 @@ Installation
 2. Create a file called `Sitemap.md` or `sitemap.md`. (The content will be displayed before the generated sitemap)
 3. Add the levels to your stylesheet
 
-       .level1{margin-left: 0;}
-       .level2{margin-left: 0.5em;}
-       .level3{margin-left: 1em;}
-       .level4{margin-left: 1.5em;}
-       .level5{margin-left: 2em;}
-       .level6{margin-left: 2.5em;}
+        .level1{margin-left: 0;}
+        .level2{margin-left: 0.5em;}
+        .level3{margin-left: 1em;}
+        .level4{margin-left: 1.5em;}
+        .level5{margin-left: 2em;}
+        .level6{margin-left: 2.5em;}
     

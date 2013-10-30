@@ -9,19 +9,18 @@
  */
 class mcb_HtmlSitemap {
 
-	private $is_sitemap = false;
+	private $url_is_sitemap = false;
    private $sitemap;
 	private $content;
 
 	public function request_url(&$url)
 	{
-		if($url == 'sitemap' || $url == 'Sitemap')
-		   $this->is_sitemap = true;
+		$this->url_is_sitemap = $url == 'sitemap' || $url == 'Sitemap';
 	}
 	
 	public function get_pages(&$pages, &$current_page, &$prev_page, &$next_page)
 	{
-		if(!$this->is_sitemap)
+		if(!$this->url_is_sitemap)
 			return;
 		
 		global $config;
