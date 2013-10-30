@@ -20,3 +20,6 @@ Installation
         .level5{margin-left: 2em;}
         .level6{margin-left: 2.5em;}
     
+Screenshot
+=============================================================================
+![Screenshot of Html Sitemap](./Screenshot.png)
