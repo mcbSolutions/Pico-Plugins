@@ -3,7 +3,7 @@ Table Of Content
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.0 alpha; Please report errors.
+**Version** 0.1 alpha; Please report errors.
 
 **Generates a table of contents for the current page.**
 

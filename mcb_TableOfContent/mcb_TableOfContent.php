@@ -5,7 +5,7 @@
  * 
  * @package Pico
  * @subpackage mcb_TableOfContent
- * @version 0.0.0 alpha
+ * @version 0.1 alpha
  * @author mcbSolutions.at <dev@mcbsolutions.at>
  */
 class mcb_TableOfContent {
@@ -26,7 +26,7 @@ class mcb_TableOfContent {
       //get the headings
       if(preg_match_all('/<h[1-'.$this->depth.']{1,1}[^>]*>.*?<\/h[1-'.$this->depth.']>/s',$content,$headers) === false)
          return "";
-      
+       
       //create the toc 
       $heads = implode("\n",$headers[0]);
       $heads = preg_replace('/<a.+?\/a>/','',$heads);
@@ -55,9 +55,16 @@ class mcb_TableOfContent {
       $this->top_link = '<a href="#top" id="toc-nav">'.$this->top_txt.'</a>';
    }
 
-   public function content_parsed(&$content)
+   public function after_parse_content(&$content)
    {
-      $html = DOMDocument::loadHTML($content);
+      if(trim($content)=="")
+        return;
+      // Workaround from cbuckley: 
+      // "... an alternative is to prepend the HTML with an XML encoding declaration, provided that the 
+      // document doesn't already contain one:
+      //
+      // http://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
+      $html = DOMDocument::loadHTML('<?xml encoding="utf-8" ?>' . $content);
       $xp = new DOMXPath($html);
 
       $nodes =$xp->query($this->xpQuery);
@@ -91,7 +98,12 @@ class mcb_TableOfContent {
          $body->parentNode->insertBefore($a, $body);
       } 
       
-      $content = $html->saveHTML();
+      $content = preg_replace(
+                     array("/<(!DOCTYPE|\?xml).+?>/", "/<\/?(html|body)>/"), 
+                     array(                         "",                   ""), 
+                     $html->saveHTML()
+                              );
+                              
       $this->toc = $this->makeToc($content);
    }
    
@@ -102,7 +114,7 @@ class mcb_TableOfContent {
       $twig_vars['mcb_top_link'] = $this->top_link;
    }
 
-   /* debug 
+   /* debug
    public function after_render(&$output)
    {
       $output = $output . "<pre style=\"background-color:white;\">".htmlentities(print_r($this,1))."</pre>";
