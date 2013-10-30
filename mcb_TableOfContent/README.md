@@ -1,4 +1,4 @@
-Table Of Content
+Table Of Contents
 =============================================================================
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
@@ -13,8 +13,8 @@ Installation
 
 index.html
 -----------------------------------------------------------------------------
-1. Add `<link rel="stylesheet" href="{{ base_url }}/plugins/mcb_TableOfContent/mcb_toc.css" media="screen,projection,print">` and `<link rel="stylesheet" href="{{ base_url }}/plugins/mcb_TableOfContent/mcb_toc_print.css" media="print">` in the `head` section of your layout file.
-2. **Optional - Smooth scrolling:** Add `<script src="{{ base_url }}/plugins/mcb_TableOfContent/mcb_toc.js"></script>` after `<script src="{{ base_url }}/vendor/jquery/jquery.min.js"></script>` inside the `head` section.
+1. Add `<link rel="stylesheet" href="{{ base_url }}/plugins/mcb_TableOfContent/mcb_TableOfContent.css" media="screen,projection,print">` and `<link rel="stylesheet" href="{{ base_url }}/plugins/mcb_TableOfContent/mcb_TableOfContent_print.css" media="print">` in the `head` section of your layout file.
+2. **Optional - Smooth scrolling:** Add `<script src="{{ base_url }}/plugins/mcb_TableOfContent/mcb_TableOfContent.js"></script>` after `<script src="{{ base_url }}/vendor/jquery/jquery.min.js"></script>` inside the `head` section.
 2. Add `{{ mcb_toc_top }}` directly after the `body` tag.
 3. Add `{{ mcb_toc }}` where you want the table of contents displayed.
 4. Add `{{ mcb_top_link }}` if you want a link to top outside the content.
@@ -40,6 +40,7 @@ Only generate Table of content with at least `n` headers
 **string**
 
 Text to display for "Move to top"
+
 	$config['mcb_toc_top_txt']		= 'Top';				
 	
 ### mcb_toc_caption
@@ -59,3 +60,7 @@ Set to false, if you like to add your own anchor
 **Note**
 
 If you use `$config['mcb_toc_anchor'] = true;` then `{{ mcb_toc_top }}` will be disabled.
+
+Screenshot
+=============================================================================
+![Screenshot of Table Of Contents](./Screenshot.png)
