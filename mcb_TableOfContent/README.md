@@ -13,8 +13,8 @@ Installation
 
 index.html
 -----------------------------------------------------------------------------
-1. Add `<link rel="stylesheet" href="{{ base_url }}/plugins/mcb_TableOfContent/mcb_TableOfContent.css" media="screen,projection,print">` and `<link rel="stylesheet" href="{{ base_url }}/plugins/mcb_TableOfContent/mcb_TableOfContent_print.css" media="print">` in the `head` section of your layout file.
-2. **Optional - Smooth scrolling:** Add `<script src="{{ base_url }}/plugins/mcb_TableOfContent/mcb_TableOfContent.js"></script>` after `<script src="{{ base_url }}/vendor/jquery/jquery.min.js"></script>` inside the `head` section.
+1. Add `<link rel="stylesheet" href="{{ base_url }}/plugins/mcb_TableOfContent/style.css" media="screen,projection,print">` and `<link rel="stylesheet" href="{{ base_url }}/plugins/mcb_TableOfContent/print.css" media="print">` in the `head` section of your layout file.
+2. **Optional - Smooth scrolling:** Add `<script src="{{ base_url }}/plugins/mcb_TableOfContent/code.js"></script>` after `<script src="{{ base_url }}/vendor/jquery/jquery.min.js"></script>` inside the `head` section.
 2. Add `{{ mcb_toc_top }}` directly after the `body` tag.
 3. Add `{{ mcb_toc }}` where you want the table of contents displayed.
 4. Add `{{ mcb_top_link }}` if you want a link to top outside the content.

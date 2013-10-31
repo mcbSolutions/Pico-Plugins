@@ -10,7 +10,6 @@
 class mcb_HtmlSitemap {
 
 	private $url_is_sitemap = false;
-   private $sitemap;
 	private $content;
 
 	public function request_url(&$url)
@@ -22,9 +21,8 @@ class mcb_HtmlSitemap {
 	{
 		if(!$this->url_is_sitemap)
 			return;
-		
+
 		global $config;
-		$this->sitemap = "<ul>";
       $start = strlen($config['base_url'])+1;
       $index = 0;
       foreach($pages as &$page)
@@ -42,11 +40,11 @@ class mcb_HtmlSitemap {
       
 		ksort ( $p , SORT_STRING);
 		
+      $sitemap = "<ul>";
 		foreach($p as $url => $title)
-			$this->sitemap .= "<li class=\"level".count(explode( "/", $url))."\"> <a href=\"$url\">$title</a></li>\n";
+			$sitemap .= "<li class=\"level".count(explode( "/", $url))."\"> <a href=\"$url\">$title</a></li>\n";
 		
-		$this->sitemap .= "</ul>";
-		$this->content .= $this->sitemap;
+		$this->content .= $sitemap . "</ul>";
 	}
 	
 	public function after_parse_content(&$content)

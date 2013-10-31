@@ -18,6 +18,10 @@ Plugins for [Pico] from mcbSolutions.at
   
     *Generates a html sitemap for all pages*
 
++ [PHP Info](./mcb_PhpInfo/README.md)
+  
+    *Displays the `phpinfo()` within you site.*
+
 
 
 [Pico]:(http://pico.dev7studios.com)
