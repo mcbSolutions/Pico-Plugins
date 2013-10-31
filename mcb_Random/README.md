@@ -7,7 +7,6 @@ Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright 
 
 **Add's random text and/or image to your site**
 
-
 Installation
 =============================================================================
 Copy/save the plugin into `plugins` folder
@@ -36,18 +35,21 @@ Use Twig value `{{ random.txt1 }}`, `{{ random.txt2 }}`, `{{ random.txt1 }}` whe
 
 config
 -----------------------------------------------------------------------------
-You are able to add as many `$config['mcb_random'][] = ...` lines you like.
-
 ### mcb_random_img_path
+**string**  
 Full path where the used images are located.
 
 	$config['mcb_random_img_path'] = $config['base_url'] . "/content/images/";
 	
 ### mcb_random_img_alt
+**string**  
 Title and alternative text for images, when missing in configuration
  
 		$config['mcb_random_img_alt'] = "Screen";
 ### mcb_random
-Semikolon separated values for random
+**string**  
+Semikolon separated values for random  
 	
 		$config['mcb_random'][] = 'Text 1;Text 2;Image;Image title';
+		
+**Note:** You are able to add as many `$config['mcb_random'][] = ...` lines you like.
