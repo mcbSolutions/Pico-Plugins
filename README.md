@@ -22,6 +22,10 @@ Plugins for [Pico] from mcbSolutions.at
   
     *Displays the `phpinfo()` within you site.*
 
++ [Page Image](./mcb_PhpInfo/README.md)
+  
+    *Image and thumbnail image for the pages array and the meta.*
+
 
 
 [Pico]:(http://pico.dev7studios.com)
