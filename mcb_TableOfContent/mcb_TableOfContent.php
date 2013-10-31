@@ -114,9 +114,9 @@ class mcb_TableOfContent {
       $twig_vars['mcb_top_link'] = $this->top_link;
    }
 
-   /* debug*/
+   /* debug
    public function after_render(&$output)
    {
       $output = $output . "<pre style=\"background-color:white;\">".htmlentities(print_r($this,1))."</pre>";
-   }
+   }*/
 }
