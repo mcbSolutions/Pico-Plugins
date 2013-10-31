@@ -22,9 +22,13 @@ Plugins for [Pico] from mcbSolutions.at
   
     *Displays the `phpinfo()` within you site.*
 
-+ [Page Image](./mcb_PhpInfo/README.md)
++ [Page Image](./mcb_PageImage/README.md)
   
     *Image and thumbnail image for the pages array and the meta.*
+
++ [Force UTF-8](./mcb_ForceUtf8/README.md)
+  
+    *If you don't have access to change charset header to UTF-8 via .htaccess or php.ini.*
 
 
 
