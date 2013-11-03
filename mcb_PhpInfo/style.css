@@ -1,5 +1,6 @@
 #phpinfo * {padding: 4px;}
 #phpinfo table {width:100%; border-collapse: collapse;}
+#phpinfo tr:nth-child(odd) {background-color: #EEEEEE;}
 #phpinfo .center {text-align: center;}
 #phpinfo .center table { margin-left: auto; margin-right: auto; text-align: left;}
 #phpinfo .center th { text-align: center !important; }
@@ -13,7 +14,7 @@
 #phpinfo .h {background-color: #2EAE9B; vertical-align: middle;}
 #phpinfo .v { min-width: 200px;}
 #phpinfo img {
-   /* Source: http://stackoverflow.com/a/12921987 */ 
+   /* Source: http://stackoverflow.com/a/12921987 */
    float: right;     -webkit-filter: drop-shadow(4px 4px 25px rgba(0,0,0,0.5));
    filter: url(#drop-shadow);
    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=4, OffY=4, Color='#444')";
