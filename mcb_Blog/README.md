@@ -39,14 +39,21 @@ index.html
                   <p style="font-size: smaller">{{ page.excerpt }}</p>
       		{% endif %}
    		{% endfor %}
-	{% endif %}	
-	
-### Difference between news and blog entry
+	{% endif %}
 
-	{% if page.mcb_is_blog_page %}
+### Example for Difference between news and blog entry
+
+	{% if page.date and page.mcb_is_blog_page %}
 		// blog entry
 	{% elseif page.date %}
 		// newsentry
 	{% else %}
 		// normal page
 	{% endif %}
+
+### Example for filtering pages list
+**Note:** Works for news and blog
+
+    {% for page in pages if page.date and page.mcb_is_blog_page == mcb_is_blog_page %}
+          <li><a href="{{ page.url }}">{{ page.title }}</a> <sub>{{ page.date_formatted }}</sub>
+    {% endfor %}
