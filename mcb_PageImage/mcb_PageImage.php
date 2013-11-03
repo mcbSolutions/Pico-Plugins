@@ -2,7 +2,7 @@
 
 /**
  * @see README.mb for further details
- * 
+ *
  * @package Pico
  * @subpackage mcb_PageImage
  * @version 0.0 alpha
@@ -17,12 +17,12 @@ class mcb_PageImage {
    private $ext = ".png";
    private $postfix = "_th";
    private $class = "";
-   
+
    public function __construct()
    {
       $this->cdir = str_replace(ROOT_DIR, "", CONTENT_DIR);
    }
-    
+
    public function config_loaded(&$settings)
    {
       if(isset($settings['mcb_pageimage_ext'    ])) $this->ext     = $settings['mcb_pageimage_ext'];
@@ -33,27 +33,22 @@ class mcb_PageImage {
    {
       global $config;
       $data['img'] = $data['img_tag'] = $data['thmb'] = $data['thmb_tag'] = "";
-      $page_meta['img'] = $page_meta['img_tag'] = $page_meta['thmb'] = $page_meta['thmb_tag'] = "";
-       
+
       $file = str_replace($config['base_url'] .'/', "", $data['url']);
       if($file=="" || $file[strlen($file)-1] == DIRECTORY_SEPARATOR)
          $file .= "index";
 
       if(file_exists(CONTENT_DIR . $file.$this->ext))
       {
-         $data['img']          = 
-         $page_meta['img']     = $config['base_url'] .DIRECTORY_SEPARATOR. $this->cdir.$file.$this->ext;
-         $data['img_tag']      = 
-         $page_meta['img_tag'] = "<img src=\"".$data['img']."\" title=\"".$data['title']."\"$this->class/>";
-      }       
+         $data['img']          = $config['base_url'] .DIRECTORY_SEPARATOR. $this->cdir.$file.$this->ext;
+         $data['img_tag']      = "<img src=\"".$data['img']."\" title=\"".$data['title']."\"$this->class/>";
+      }
       if(file_exists(CONTENT_DIR . $file.$this->postfix.$this->ext))
       {
-         $data['thmb']          = 
-         $page_meta['thmb']     = $config['base_url'] .DIRECTORY_SEPARATOR. $this->cdir.$file.$this->postfix.$this->ext;
-         $data['thmb_tag']      = 
-         $page_meta['thmb_tag'] = "<img src=\"".$data['thmb']."\" title=\"".$data['title']."\"$this->class/>";
+         $data['thmb']          = $config['base_url'] .DIRECTORY_SEPARATOR. $this->cdir.$file.$this->postfix.$this->ext;
+         $data['thmb_tag']      = "<img src=\"".$data['thmb']."\" title=\"".$data['title']."\"$this->class/>";
       }
-   } 
+   }
     /* debug
     public function after_render(&$output)
     {
