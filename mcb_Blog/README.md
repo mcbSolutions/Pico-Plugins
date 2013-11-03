@@ -26,6 +26,19 @@ Content
 
 index.html
 -----------------------------------------------------------------------------
+### Example to exlude Blog from the menu
+
+    <nav id="nav">
+        <ul>
+            {% for page in pages if not page.date and page.title != 'Blog' %}
+                {% if page.title == meta.title %}
+                   <li class="curr"><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% else %}
+                   <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
 
 ### Example for listing the 5 latest posts at the blog's start page
 
