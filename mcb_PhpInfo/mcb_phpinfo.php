@@ -5,20 +5,25 @@
  * 
  * @package Pico
  * @subpackage mcb PhpInfo
- * @version 0.2 alpha
+ * @version 0.3
  * @author mcbSolutions.at <dev@mcbsolutions.at>
  */
 class mcb_PhpInfo {
    
-   private $url_is_phpinfo;
+	private $url_is_phpinfo;
    
-   public function request_url(&$url)
-   {
-      $this->url_is_phpinfo = strtolower(str_replace(" ", "", $url)) == 'phpinfo';
-   }
-   
-   public function after_load_content(&$file, &$content)
-   {
+	public function request_url(&$url)
+	{
+	   $this->url_is_phpinfo = strtolower(str_replace(" ", "", $url)) == 'phpinfo';
+	}
+	
+	public function after_404_load_content(&$file, &$content)
+	{
+		$content = "";
+	}
+	
+	public function after_load_content(&$file, &$content)
+	{
       if(!$this->url_is_phpinfo)
          return;
       
@@ -36,9 +41,9 @@ class mcb_PhpInfo {
 
       $content .= $dom->saveHTML($div);
    }
-   /* debug
-   public function after_render(&$output)
+   /* debug   public function after_render(&$output)
    {
       $output = $output . "<pre style=\"background-color:white;\">".htmlentities(print_r($this,1))."</pre>";
-   } */
+   }*/
+
 }
