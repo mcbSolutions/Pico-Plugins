@@ -20,7 +20,7 @@ class mcb_PageImage {
 
    public function __construct()
    {
-      $this->cdir = str_replace(ROOT_DIR, "", CONTENT_DIR);
+	   $this->cdir = str_replace(ROOT_DIR, "", CONTENT_DIR);
    }
 
    public function config_loaded(&$settings)
