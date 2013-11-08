@@ -31,5 +31,9 @@ Plugins for [Pico] from mcbSolutions.at
     *If you don't have access to change charset header to UTF-8 via .htaccess or php.ini.*
 
 
++ [HashTag](./mcb_HashTag/README.md)
+  
+    *Highlites #hashtags in your site.*
+
 
 [Pico]:(http://pico.dev7studios.com)
