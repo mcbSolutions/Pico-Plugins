@@ -3,14 +3,14 @@ Html Sitemap
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.0 alpha; Please report errors.
+**Version** 0.1; Please report errors.
 
 **Generates a html sitemap for all pages.**
 
 Installation
 =============================================================================
 1. Copy/save the plugin into `plugins` folder
-2. Create a file called `Sitemap.md` or `sitemap.md`. (The content will be displayed before the generated sitemap)
+2. If you like to add text before, create a file called `Sitemap.md` or `sitemap.md`.
 3. Add the levels to your stylesheet
 
         .level1{margin-left: 0;}

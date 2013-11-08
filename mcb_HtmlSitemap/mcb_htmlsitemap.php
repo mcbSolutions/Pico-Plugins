@@ -4,7 +4,7 @@
  * 
  * @package Pico
  * @subpackage mcb_HtmlSitemap
- * @version 0.0 alpha
+ * @version 0.1
  * @author mcbSolutions.at <dev@mcbsolutions.at>
  */
 class mcb_HtmlSitemap {
@@ -45,6 +45,11 @@ class mcb_HtmlSitemap {
 			$sitemap .= "<li class=\"level".count(explode( "/", $url))."\"> <a href=\"$url\">$title</a></li>\n";
 		
 		$this->content .= $sitemap . "</ul>";
+	}
+	
+	public function after_404_load_content(&$file, &$content)
+	{
+		$content = "";
 	}
 	
 	public function after_parse_content(&$content)
