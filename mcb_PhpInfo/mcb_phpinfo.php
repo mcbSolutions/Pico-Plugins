@@ -5,7 +5,7 @@
  * 
  * @package Pico
  * @subpackage mcb PhpInfo
- * @version 0.1 alpha
+ * @version 0.2 alpha
  * @author mcbSolutions.at <dev@mcbsolutions.at>
  */
 class mcb_PhpInfo {
@@ -34,7 +34,7 @@ class mcb_PhpInfo {
       $div->removeAttribute('class');
       $div->setAttribute('id', 'phpinfo');
 
-      $content = $dom->saveHTML($div);
+      $content .= $dom->saveHTML($div);
    }
    /* debug
    public function after_render(&$output)
