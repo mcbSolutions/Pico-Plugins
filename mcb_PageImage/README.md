@@ -3,7 +3,7 @@ Page Image
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.0 alpha; Please report errors.
+**Version** 0.1 alpha; Please report errors.
 
 **Image and thumbnail image for the pages array and the meta**
 
@@ -24,21 +24,20 @@ index.html
 
     {{ current_page.img }}
     {{ current_page.img_tag }}
-	 {{ current_page.thmb }}
-	 {{ current_page.thmb_tag }}
+	{{ current_page.thmb }}
+	{{ current_page.thmb_tag }}
 
 ### Example for listing pages
 
 	{% for page in pages%}
       {{ page.img }}
       {{ page.img_tag }}
-		{{ page.thmb }}
-		{{ page.thmb_tag }}
+	  {{ page.thmb }}
+	  {{ page.thmb_tag }}
    {% endfor %}
 
-config
+Optional: config
 -----------------------------------------------------------------------------
-All parameters are optional
 
 ### mcb_pageimage_ext
 

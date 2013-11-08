@@ -5,7 +5,7 @@
  *
  * @package Pico
  * @subpackage mcb_PageImage
- * @version 0.0 alpha
+ * @version 0.1 alpha
  * @author mcbSolutions.at <dev@mcbsolutions.at>
  */
 class mcb_PageImage {
@@ -40,16 +40,16 @@ class mcb_PageImage {
 
       if(file_exists(CONTENT_DIR . $file.$this->ext))
       {
-         $data['img']          = $config['base_url'] .DIRECTORY_SEPARATOR. $this->cdir.$file.$this->ext;
-         $data['img_tag']      = "<img src=\"".$data['img']."\" title=\"".$data['title']."\"$this->class/>";
+         $data['img']          = $config['base_url'] .DIRECTORY_SEPARATOR. $this->cdir.str_replace(" ", "%20", $file).$this->ext;
+         $data['img_tag']      = "<img src=\"".$data['img']."\" alt=\"".$data['title']."\" title=\"".$data['title']."\"$this->class/>";
       }
       if(file_exists(CONTENT_DIR . $file.$this->postfix.$this->ext))
       {
-         $data['thmb']          = $config['base_url'] .DIRECTORY_SEPARATOR. $this->cdir.$file.$this->postfix.$this->ext;
-         $data['thmb_tag']      = "<img src=\"".$data['thmb']."\" title=\"".$data['title']."\"$this->class/>";
+         $data['thmb']          = $config['base_url'] .DIRECTORY_SEPARATOR. $this->cdir.str_replace(" ", "%20", $file).$this->postfix.$this->ext;
+         $data['thmb_tag']      = "<img src=\"".$data['thmb']."\" alt=\"Thumbnail\" title=\"".$data['title']."\"$this->class/>";
       }
    }
-    /* debug
+   /* debug
     public function after_render(&$output)
     {
         $output = $output . "<pre style=\"background-color:white;\">".htmlentities(print_r($this,1))."</pre>";
