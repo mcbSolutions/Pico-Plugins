@@ -5,7 +5,7 @@
  * 
  * @package Pico
  * @subpackage mcb PhpInfo
- * @version 0.0
+ * @version 0.1 alpha
  * @author mcbSolutions.at <dev@mcbsolutions.at>
  */
 class mcb_PhpInfo {
