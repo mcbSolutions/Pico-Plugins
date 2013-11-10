@@ -17,7 +17,7 @@ With this plugin you will get 4 new properties within the pages
 Installation
 =============================================================================
 1. Copy/save the plugin into `plugins` folder
-2. Optionally install the [Create Homepage thumbnail](Create%20Homepage%20thumbnail.md) workflow for Automator in OS X to simply create the thumbnail images
+2. **OS X only:** Optionally install the [Create Homepage thumbnail](Create%20Homepage%20thumbnail.md) workflow for Automator in OS X to simply create the thumbnail images
 
 index.html
 -----------------------------------------------------------------------------
@@ -35,7 +35,7 @@ index.html
       {{ page.img_tag }}
 	  {{ page.thmb }}
 	  {{ page.thmb_tag }}
-   {% endfor %}
+    {% endfor %}
 
 Optional: config
 -----------------------------------------------------------------------------
