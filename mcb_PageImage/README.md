@@ -17,6 +17,7 @@ With this plugin you will get 4 new properties within the pages
 Installation
 =============================================================================
 1. Copy/save the plugin into `plugins` folder
+2. Optionally install the [Create Homepage thumbnail](Create%20Homepage%20thumbnail.md) workflow for Automator in OS X to simply create the thumbnail images
 
 index.html
 -----------------------------------------------------------------------------
