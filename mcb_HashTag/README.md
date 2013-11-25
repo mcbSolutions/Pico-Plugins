@@ -3,7 +3,7 @@ HashTag
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.0; Please report errors.
+**Version** 0.1; Please report errors.
 
 **Highlites #hashtags in your site**
 
@@ -24,21 +24,21 @@ style.css
        -moz-border-radius: 5px;
        border-radius: 5px;
     }
-      
+
 Optional: config
 -----------------------------------------------------------------------------
 
 ### mcb_hashtag_se
-**url**  
-Url to the search engine where HashTag is able to apply the hashtag to search for.  
-Use this parameter, if you like to link hashtags to a seaarch engine.
+**url**
+Url to the search engine where HashTag is able to apply the hashtag to search for.
+Use this parameter, if you like to link hashtags to a search engine other than twitter.com
 
 	$config['mcb_hashtag_se'] = "https://www.google.com/search?q=";
 
 
 ### mcb_hashtag_remove_hash
-**bool**  
-Set to `true`, if you like to remove the hash from the output.  
+**bool**
+Set to `true`, if you like to remove the hash from the output.
 Default is `false`.
 
 	$config['mcb_hashtag_remove_hash'] = true;
