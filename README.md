@@ -10,6 +10,7 @@ Plugins for [Pico] from mcbSolutions.at
 [Page Image](./mcb_PageImage/) - *Image and thumbnail image for the pages array and the meta.*  
 [Force UTF-8](./mcb_ForceUtf8/) - *If you don't have access to change charset header to UTF-8 via .htaccess or php.ini.*  
 [HashTag](./mcb_HashTag/) - *Highlites #hashtags in your site.*  
+[ClearTwigCache](./mcb_ClearTwigCache/) - *Clears the cache of twig*  
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
