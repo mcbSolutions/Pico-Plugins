@@ -3,7 +3,7 @@ HashTag
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.1; Please report errors.
+**Version** 0.2; Please report errors.
 
 **Highlites #hashtags in your site**
 
