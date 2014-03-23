@@ -9,9 +9,10 @@
 #phpinfo th {font-weight: bolder}
 #phpinfo h1 {font-size: 150%; padding: 4px;}
 #phpinfo h2 {font-size: 125%;}
-#phpinfo .h, #phpinfo .p, #phpinfo .e {text-align: left;color: white;font-weight: bold; padding: 4px;}
+#phpinfo .e {text-align: left;color: white;font-weight: bold; padding: 4px;}
+#phpinfo h1.p {text-align: left; color: gray; font-weight: bold; padding: 4px;}
 #phpinfo .e {background-color: #2EAE9B; min-width: 200px;}
-#phpinfo .h {background-color: #2EAE9B; vertical-align: middle;}
+#phpinfo .h {background-color: #2EAE9B; vertical-align: middle; color: gray;}
 #phpinfo .v { min-width: 200px;}
 #phpinfo img {
    /* Source: http://stackoverflow.com/a/12921987 */
@@ -21,3 +22,16 @@
    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=4, OffY=4, Color='#444')";
 }
 #phpinfo hr {display: none}
+
+/* Navigation
+ul.nav-tabs {display: table; list-style-type: none; margin: 0; padding: 0;}
+ul.nav-tabs>li {float: left;padding: 10px;}
+ul.nav-tabs>li:hover {background-color: #fff;}
+ul.nav-tabs>li.active {background-color: #2EAE9B; }
+ul.nav-tabs>li.active a {color: #fff;}
+ul { overflow: auto; }
+ul.nav-tabs li:hover > ul {display: block;position: absolute;background-color: #fff;}
+ul.dropdown-menu {display: none;list-style: none;padding: 0;}
+ul.dropdown-menu li {float: none;position: relative;background-color: #2EAE9B;padding: 5px;padding-left: 10px;padding-right: 10px;}
+ul.dropdown-menu li a {color: #fff;}
+ul.dropdown-menu li a:hover {color:#000;}
