@@ -4,13 +4,21 @@
  *
  * @package Pico
  * @subpackage mcb_HtmlSitemap
- * @version 0.2
+ * @version 0.3
  * @author mcbSolutions.at <dev@mcbsolutions.at>
  */
 class mcb_HtmlSitemap {
 
 	private $url_is_sitemap = false;
+	private $hidden_folder  = "hidden";
+	private $show_hidden    = false;
 	private $content;
+
+	public function config_loaded(&$settings)
+	{
+		if(isset($settings['mcb_HtmlSitemap_hidden_folder'])) $this->hidden_folder = $settings['mcb_HtmlSitemap_hidden_folder'];
+		if(isset($settings['mcb_HtmlSitemap_show_hidden'  ])) $this->show_hidden   = $settings['mcb_HtmlSitemap_show_hidden'  ];
+	}
 
 	public function request_url(&$url)
 	{
@@ -23,27 +31,36 @@ class mcb_HtmlSitemap {
 			return;
 
 		global $config;
-      $start = strlen($config['base_url'])+1;
+      $start    = strlen($config['base_url'])+1;
       $base_url = $config['base_url'];
-      $index = 0;
       foreach($pages as &$page)
       {
           $key = substr ($page['url'], $start);
 
-          if($key == '')
-             $key = $index++;
-
           if(substr($key, strlen($key)-1) == DIRECTORY_SEPARATOR)
              $key = substr($key, 0, strlen($key)-1);
 
-		    $p[$key] = $page['title'];
+			 if(stripos($key, $this->hidden_folder) === false)
+		    	$p[$key] = $page['title'];
+			 else
+			 	$p2[$key] = $page['title'];
       }
 
-		ksort ( $p , SORT_STRING);
+		ksort ( $p, SORT_STRING);
+
+		if($this->show_hidden)
+		{
+			ksort ( $p2, SORT_STRING);
+			$p = array_merge($p, $p2);
+		}
 
       $sitemap = "<ul>";
 		foreach($p as $url => $title)
-			$sitemap .= "<li class=\"level".count(explode( "/", $url))."\"> <a href=\"$base_url/$url\">$title</a></li>\n";
+		{
+			$url = $url == "0" ? "" : $url;
+			$level = count(explode( "/", $url));
+			$sitemap .= "<li class=\"level$level\"> <a href=\"$base_url/$url\">$title</a></li>\n";
+		}
 
 		$this->content .= $sitemap . "</ul>";
 	}
