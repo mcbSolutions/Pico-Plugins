@@ -4,7 +4,7 @@
  *
  * @package Pico
  * @subpackage mcb_HashTag
- * @version 0.2
+ * @version 0.3
  * @author mcbSolutions.at <dev@mcbsolutions.at>
 
  */
@@ -26,11 +26,10 @@ class mcb_HashTag {
 	{
 		$fmt   = $this->remove_hash ? "\$1" : "#\$1";
 		$href  = $this->se ? " href=\"$this->se%23$1\"" : "";
-		$alt   = " alt=\"HashTag\"";
 		$title = " title=\"HashTag\"";
 
-		$content = preg_replace ( '/(?<![\'"])#([a-zA-Z_][a-zA-Z_0-9]*)(?![\'"])/s'
-								, "<a$href$alt$title class=\"hashtag\">$fmt</a>"
+		$content = preg_replace ( '/(?<![\'"])#([a-zA-Z_][a-zA-Z_\-0-9]*)(?![\'"])/s'
+								, "<a$href$title class=\"hashtag\">$fmt</a>"
 								, $content);
 	}
 	/* debug

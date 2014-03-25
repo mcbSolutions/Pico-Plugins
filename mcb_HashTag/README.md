@@ -1,14 +1,14 @@
 HashTag
-=============================================================================
+======================================================================
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.2; Please report errors.
+**Version** 0.3; Please report errors.
 
 **Highlites #hashtags in your site**
 
 Installation
-=============================================================================
+======================================================================
 1. Copy/save the plugin into `plugins` folder
 2. Format `.hashtag` class in your css file
 
@@ -44,5 +44,5 @@ Default is `false`.
 	$config['mcb_hashtag_remove_hash'] = true;
 
 Screenshot
-=============================================================================
+======================================================================
 ![Screenshot of Html Sitemap](./Screenshot.png)
