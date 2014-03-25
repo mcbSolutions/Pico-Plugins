@@ -12,7 +12,7 @@ Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright 
 + Best use with [Pico Navigation](https://github.com/ahmet2106/pico-navigation) when excluding `blog` folder
 
 Installation
-=============================================================================
+======================================================================
 1. Copy/save the plugin into `plugins` folder
 
 Content
@@ -56,9 +56,9 @@ index.html
 
 ### Example for Difference between news and blog entry
 
-	{% if page.date and page.mcb_is_blog_page %}
+	{% if current_page.date and current_page.mcb_is_blog_page %}
 		// blog entry
-	{% elseif page.date %}
+	{% elseif current_page.date %}
 		// newsentry
 	{% else %}
 		// normal page
