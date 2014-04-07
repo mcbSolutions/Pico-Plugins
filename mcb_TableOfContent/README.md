@@ -1,5 +1,5 @@
 Table Of Contents
-=============================================================================
+======================================================================
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
@@ -8,7 +8,7 @@ Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright 
 **Generates a table of contents for the current page.**
 
 Installation
-=============================================================================
+======================================================================
 1. Copy/save the plugin into `plugins` folder
 
 index.html
