@@ -5,52 +5,57 @@
  *
  * @package Pico
  * @subpackage mcb_PageImage
- * @version 0.1 alpha
+ * @version 0.2
  * @author mcbSolutions.at <dev@mcbsolutions.at>
+ *
+ * ## Changelog
+ *
+ * 	+ 2016-11-07 Upgrade to AbstractPicoPlugin for Pico 1.0
  */
-class mcb_PageImage {
+class mcb_PageImage extends AbstractPicoPlugin {
 
    private $image;
    private $thumbnail;
-   private $cdir; // content dir
+   private $contenDir;
    // defaults
    private $ext = ".png";
    private $postfix = "_th";
    private $class = "";
+   private $classTh = "";
 
-   public function __construct()
+   public function onConfigLoaded(&$realConfig)
    {
-	   $this->cdir = str_replace(ROOT_DIR, "", CONTENT_DIR);
+      if(isset($realConfig['mcb_pageimage_ext'    ])) $this->ext     = $realConfig['mcb_pageimage_ext'];
+      if(isset($realConfig['mcb_pageimage_postfix'])) $this->postfix = $realConfig['mcb_pageimage_postfix'];
+      if(isset($realConfig['mcb_pageimage_class'  ])) $this->class   = " class=\"".$realConfig['mcb_pageimage_class']."\"";
+      if(isset($realConfig['mcb_pageimage_classth'])) $this->classTh = " class=\"".$realConfig['mcb_pageimage_classth']."\"";
+
+	   $this->contenDir = '../'.str_replace($this->getRootDir(), "", $realConfig['content_dir']);
    }
 
-   public function config_loaded(&$settings)
+   public function onSinglePageLoaded(&$pageData)
    {
-      if(isset($settings['mcb_pageimage_ext'    ])) $this->ext     = $settings['mcb_pageimage_ext'];
-      if(isset($settings['mcb_pageimage_postfix'])) $this->postfix = $settings['mcb_pageimage_postfix'];
-      if(isset($settings['mcb_pageimage_class'  ])) $this->class   = " class=\"".$settings['mcb_pageimage_class']."\"";
-   }
-   public function get_page_data(&$data, $page_meta)
-   {
-      global $config;
-      $data['img'] = $data['img_tag'] = $data['thmb'] = $data['thmb_tag'] = "";
+      $contentDir = $this->getPico()->getConfig();
+		$contentDir = $contentDir['content_dir'];
+      $pageData['img'] = $pageData['img_tag'] = $pageData['thmb'] = $pageData['thmb_tag'] = "";
 
-      $file = str_replace($config['base_url'] .'/', "", $data['url']);
+      $file = $pageData['id'];
       if($file=="" || $file[strlen($file)-1] == DIRECTORY_SEPARATOR)
          $file .= "index";
 
-      if(file_exists(CONTENT_DIR . $file.$this->ext))
+      if(file_exists($contentDir.$file.$this->ext))
       {
-         $data['img']          = $config['base_url'] .DIRECTORY_SEPARATOR. $this->cdir.str_replace(" ", "%20", $file).$this->ext;
-         $data['img_tag']      = "<img src=\"".$data['img']."\" alt=\"".$data['title']."\" title=\"".$data['title']."\"$this->class/>";
+         $pageData['img']          = $this->contenDir.str_replace(" ", "%20", $file).$this->ext;
+         $pageData['img_tag']      = "<img src=\"".$pageData['img']."\" alt=\"".$pageData['title']."\" title=\"".$pageData['title']."\"$this->class/>";
       }
-      if(file_exists(CONTENT_DIR . $file.$this->postfix.$this->ext))
+      if(file_exists($contentDir.$file.$this->postfix.$this->ext))
       {
-         $data['thmb']          = $config['base_url'] .DIRECTORY_SEPARATOR. $this->cdir.str_replace(" ", "%20", $file).$this->postfix.$this->ext;
-         $data['thmb_tag']      = "<img src=\"".$data['thmb']."\" alt=\"Thumbnail\" title=\"".$data['title']."\"$this->class/>";
+         $pageData['thmb']          = $this->contenDir.str_replace(" ", "%20", $file).$this->postfix.$this->ext;
+         $pageData['thmb_tag']      = "<img src=\"".$pageData['thmb']."\" alt=\"Thumbnail\" title=\"".$pageData['title']."\"$this->classTh/>";
       }
    }
    /* debug
-    public function after_render(&$output)
+    public function onPageRendered(&$output)
     {
         $output = $output . "<pre style=\"background-color:white;\">".htmlentities(print_r($this,1))."</pre>";
     }*/

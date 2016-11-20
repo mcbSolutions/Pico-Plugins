@@ -3,15 +3,15 @@ Create Homepage thumbnail.workflow
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.0; Please report errors.
+**Version** 0.1; Please report errors.
 
 **Create Homepage thumbnail image**
 
 Installation
 =============================================================================
-1. Doubleclick the `Create Homepage thumnail.workflow` file
+1. Doubleclick the `Create Homepage thumbnail.workflow` file
 2. Open with Automator 
-
+	![title](Create%20Homepage%20thumbnail%200.png)
       a. Rename <code>&nbsp;Kopie</code> to what your system appends to copied objects.  
          *Sample: For an english system change to <code>&nbsp;Copy</code>*.  
          ![title](Create%20Homepage%20thumbnail%201.png)

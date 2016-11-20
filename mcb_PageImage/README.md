@@ -3,7 +3,7 @@ Page Image
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.1 alpha; Please report errors.
+**Version** 0.2; Please report errors.
 
 **Image and thumbnail image for the pages array and the meta**
 
