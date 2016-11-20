@@ -5,13 +5,20 @@
  *
  * @package Pico
  * @subpackage mcb PhpInfo
- * @version 0.4
+ * @version 0.5
  * @author mcbSolutions.at <dev@mcbsolutions.at>
+ *
+ * ## Changelog
+ *
+ *    + 2016-02-22 Upgrade to AbstractPicoPlugin for Pico 1.0
+ *    + 2016-11-20 Added disabling mcb_TableOfContent for this plugin
  */
-class mcb_PhpInfo {
+class mcb_PhpInfo extends AbstractPicoPlugin {
 
-	private $url_is_phpinfo;
-	private $use_section = false;
+	private $url_is_phpinfo = false;
+	private $use_section    = true;
+	private $mcb_toc        = NULL;
+	private $mcb_tocEnable  = false;
 
    private $info = array(
          INFO_GENERAL => 'General',
@@ -32,57 +39,82 @@ class mcb_PhpInfo {
          CREDITS_SAPI => 'Sapi',
          CREDITS_ALL => 'All',
       );
-   public function config_loaded(&$settings)
+
+	public function onConfigLoaded(&$config)
    {
-      if(isset($settings['mcb_use_section']))
-      	$this->use_section = &$settings['mcb_use_section'];
+      if(isset($config['mcb_PhpInfo_use_section']))
+      	$this->use_section = &$config['mcb_PhpInfo_use_section'];
 	}
-	public function request_url(&$url)
+
+	public function onRequestUrl(&$url)
 	{
       $this->url_is_phpinfo = strpos(strtolower($url), 'phpinfo') !== false;
+
+      if($this->url_is_phpinfo)
+      {
+         try
+         {
+            $this->mcb_toc = $this->getPico()->getPlugin("mcb_TableOfContent");
+         }
+         catch(RuntimeException $e)
+         {
+            // not installed
+         }
+
+         if(isset($this->mcb_toc) && $this->mcb_toc->isEnabled())
+         {
+            $this->mcb_tocEnable = true;
+            $this->mcb_toc->setEnabled(false);
+         }
+      }
 	}
 
-	public function after_404_load_content(&$file, &$content)
-	{
-	   if(!$this->url_is_phpinfo)
+ 	public function on404ContentLoaded(&$rawContent)
+ 	{
+ 	   if(!$this->url_is_phpinfo)
          return;
 
-		$content = "";
-	}
+		$rawContent = "";
+ 	}
 
-	public function after_load_content(&$file, &$content)
+	public function onContentLoaded(&$rawContent)
 	{
       if(!$this->url_is_phpinfo)
          return;
 
+		if($this->use_section)
+		{
+			$info = (array_key_exists(intval(@$_GET['info'  ]), $this->info  ) === false) ? INFO_ALL        : intval(@$_GET['info'  ]);
+			$cred = (array_key_exists(intval(@$_GET['credit']), $this->credit) === false) ? CREDITS_GENERAL : intval(@$_GET['credit']);
 
-		if($this->use_section) {
-	      $info = isset($_GET['info'  ]) ? $_GET['info'  ] : INFO_ALL;
-	      $cred = isset($_GET['credit']) ? $_GET['credit'] : CREDITS_GENERAL;
-
-	      $content .= '<ul class="nav nav-tabs nav-justified">';
-	      foreach ($this->info as $key => $value) {
+ 	      $rawContent .= "<ul class=\"nav nav-tabs nav-justified\">\n";
+	      foreach ($this->info as $key => $value)
+	      {
 	         if($key==INFO_CREDITS) {
-	            if($key==$info) $content .= "<li class=\"active dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">$value <span class=\"caret\"></span></a>";
-	            else            $content .= "<li class=\"       dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">$value <span class=\"caret\"></span></a>";
+	            if($key==$info) $rawContent .= "<li class=\"active dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">$value <span class=\"caret\"></span></a>";
+	            else            $rawContent .= "<li class=\"       dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">$value <span class=\"caret\"></span></a>";
 
-	            $content .= '<ul class="dropdown-menu" role="menu">';
+	            $rawContent .= "<ul class=\"dropdown-menu\" role=\"menu\">\n";
 	            foreach ($this->credit as $ck => $cv) {
-	               if($ck==$cred) $content .= "<li class=\"active\"><a>$cv</a></li>";
-	               else           $content .= "<li><a href=\"?info=$key&amp;credit=$ck\">$cv</a></li>";
+	               if($ck==$cred) $rawContent .= "<li class=\"active\"><a>$cv</a></li>\n";
+	               else           $rawContent .= "<li><a href=\"?PhpInfo&info=$key&amp;credit=$ck\">$cv</a></li>\n";
 	            }
-	            $content .= '</ul></li>';
+	            $rawContent .= "</ul></li>\n";
 	         } else
-	         if($key==$info) $content .= "<li class=\"active\"><a                    >$value</a></li>";
-	         else            $content .= "<li                 ><a href=\"?info=$key\">$value</a></li>";
+				{
+	         	if($key==$info) $rawContent .= "<li class=\"active\"><a                            >$value</a></li>\n";
+	         	else            $rawContent .= "<li                 ><a href=\"?PhpInfo&info=$key\">$value</a></li>\n";
+				}
 	      }
-	      $content .= '</ul>';
+	      $rawContent .= "</ul>\n";
       } else {
       	$info = INFO_ALL;
       }
 
-      if($info == INFO_CREDITS) $content .= $this->phpCredit($cred);
-      else                      $content .= $this->phpInfo($info);
+      if($info == INFO_CREDITS) $rawContent .= $this->phpCredit($cred);
+      else                      $rawContent .= $this->phpInfo($info);
+
+		$this->tmp = $rawContent;
    }
 
    private function phpInfo($info = INFO_ALL)
@@ -93,12 +125,17 @@ class mcb_PhpInfo {
       $phpinfo = ob_get_contents();
       ob_end_clean();
 
+      $this->tmp = $phpinfo;
+
       // modify the div
       // http://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
-      $dom = DOMDocument::loadHTML('<?xml encoding="utf-8" ?>' . $phpinfo);
+      $dom = new DOMDocument();
+      $dom->loadHTML('<?xml encoding="utf-8" ?>' . $phpinfo);
       $div = $dom->getElementsByTagname('div')->item(0);
       $div->removeAttribute('class');
       $div->setAttribute('id', 'phpinfo');
+
+      $this->tmp = $dom->saveHTML($div);
 
       return $dom->saveHTML($div);
    }
@@ -115,7 +152,8 @@ class mcb_PhpInfo {
 
       // modify the div
       // http://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
-      $dom = DOMDocument::loadHTML('<?xml encoding="utf-8" ?>' . "<div id=\"phpinfo\">$phpinfo</div>");
+      $dom = new DOMDocument();
+      $dom->loadHTML('<?xml encoding="utf-8" ?>' . "<div id=\"phpinfo\">$phpinfo</div>");
       $div = $dom->getElementsByTagname('div')->item(0);
 
       $caption = $dom->getElementsByTagname('h1')->item(0);
@@ -123,16 +161,23 @@ class mcb_PhpInfo {
 
       return $dom->saveHTML($div);
    }
-   public function before_render(&$twig_vars, &$twig, &$template)
+
+   public function onPageRendering(&$twig, &$twigVariables, &$templateName)
    {
       if(!$this->url_is_phpinfo)
          return;
 
-      if($twig_vars['meta']['title'] == '') $twig_vars['meta']['title'] = "PHP Info";
+      if($twigVariables['meta']['title'] == '') $twigVariables['meta']['title'] = "PHP Info";
    }
-   /* debug
-   public function after_render(&$output)
+
+   public function onPageRendered(&$output)
    {
-      $output = $output . "<pre style=\"background-color:white;\">".htmlentities(print_r($this,1))."</pre>";
-   }*/
+      if($this->url_is_phpinfo && $this->mcb_tocEnable && isset($this->mcb_tocEnable))
+         $this->mcb_toc->setEnabled(true);
+
+      unset($this->mcb_toc);
+
+      //debug
+      //$output = $output . "<pre style=\"background-color:white;\">".htmlentities(print_r($this->tmp ,1))."</pre>";
+   }
 }

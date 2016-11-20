@@ -9,11 +9,10 @@
 #phpinfo th {font-weight: bolder}
 #phpinfo h1 {font-size: 150%; padding: 4px;}
 #phpinfo h2 {font-size: 125%;}
-#phpinfo .e {text-align: left;color: white;font-weight: bold; padding: 4px;}
-#phpinfo h1.p {text-align: left; color: gray; font-weight: bold; padding: 4px;}
-#phpinfo .e {background-color: #2EAE9B; min-width: 200px;}
-#phpinfo .h {background-color: #2EAE9B; vertical-align: middle; color: gray;}
+#phpinfo .e {text-align: left;color: white;font-weight: bold; padding: 4px; background-color: #2EAE9B; min-width: 200px;}
+#phpinfo .h {text-align: left;color: white;font-weight: bold; padding: 4px; background-color: red; min-width: 200px; vertical-align: middle;}
 #phpinfo .v { min-width: 200px;}
+#phpinfo h1.p {text-align: left; color: gray; font-weight: bold; padding: 4px;}
 #phpinfo img {
    /* Source: http://stackoverflow.com/a/12921987 */
    float: right;     -webkit-filter: drop-shadow(4px 4px 25px rgba(0,0,0,0.5));
@@ -23,7 +22,7 @@
 }
 #phpinfo hr {display: none}
 
-/* Navigation
+/* Navigation */
 ul.nav-tabs {display: table; list-style-type: none; margin: 0; padding: 0;}
 ul.nav-tabs>li {float: left;padding: 10px;}
 ul.nav-tabs>li:hover {background-color: #fff;}

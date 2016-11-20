@@ -3,10 +3,11 @@ PHP Info
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.4; Please report errors.
+**Version** 0.5; Please report errors.
 
 **Displays the `phpinfo(...)` and `phpcredits(...)` within you site.**
 
+**Attention** From version 0.4 to 0.5 the name of the config variable has been changed from `mcb_use_section` to `mcb_PhpInfo_use_section`.
 
 Installation
 ===============================================================
@@ -20,12 +21,12 @@ Installation
 Optional: Config
 -----------------------------------------------------------------------------
 
-### mcb_use_section
+### mcb_PhpInfo_use_section
 **boolean**
 
 Activate navigation to sections. When set to false (default) all information from phpinfo() will be displayed.
 
-	$config['mcb_use_section']		= false;
+	$config['mcb_PhpInfo_use_section']		= false;
 	
 
 
