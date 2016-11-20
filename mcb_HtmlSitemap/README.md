@@ -3,7 +3,7 @@ Html Sitemap
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.3; Please report errors.
+**Version** 0.4; Please report errors.
 
 **Generates a html sitemap for all pages.**
 

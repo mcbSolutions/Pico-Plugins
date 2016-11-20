@@ -4,35 +4,43 @@
  *
  * @package Pico
  * @subpackage mcb_HtmlSitemap
- * @version 0.3
+ * @version 0.4
  * @author mcbSolutions.at <dev@mcbsolutions.at>
+ * 
+ * ## Changelog
+ * 
+ * 	+ 2016-02-22 
+ * 		+ Bugfix for untitled pages are not shown; Now shown as "*Untitled page n"
+ *   		+ Upgrade to AbstractPicoPlugin for Pico 1.0
+ * 
  */
-class mcb_HtmlSitemap {
+class mcb_HtmlSitemap extends AbstractPicoPlugin {
 
 	private $url_is_sitemap = false;
 	private $hidden_folder  = "hidden";
 	private $show_hidden    = false;
 	private $content;
 
-	public function config_loaded(&$settings)
+	public function onConfigLoaded(&$config)
 	{
-		if(isset($settings['mcb_HtmlSitemap_hidden_folder'])) $this->hidden_folder = $settings['mcb_HtmlSitemap_hidden_folder'];
-		if(isset($settings['mcb_HtmlSitemap_show_hidden'  ])) $this->show_hidden   = $settings['mcb_HtmlSitemap_show_hidden'  ];
+		if(isset($config['mcb_HtmlSitemap_hidden_folder'])) $this->hidden_folder = $config['mcb_HtmlSitemap_hidden_folder'];
+		if(isset($config['mcb_HtmlSitemap_show_hidden'  ])) $this->show_hidden   = $config['mcb_HtmlSitemap_show_hidden'  ];
 	}
 
-	public function request_url(&$url)
+	public function onRequestUrl(&$url)
 	{
 		$this->url_is_sitemap = strpos(strtolower($url), 'sitemap') !== false;
 	}
 
-	public function get_pages(&$pages, &$current_page, &$prev_page, &$next_page)
+	public function onPagesLoaded(&$pages, &$currentPage, &$previousPage, &$nextPage)
 	{
 		if(!$this->url_is_sitemap)
 			return;
 
 		global $config;
-      $start    = strlen($config['base_url'])+1;
+      $start    = strlen($config['base_url']);
       $base_url = $config['base_url'];
+		static $tmp = 1;
       foreach($pages as &$page)
       {
           $key = substr ($page['url'], $start);
@@ -41,9 +49,9 @@ class mcb_HtmlSitemap {
              $key = substr($key, 0, strlen($key)-1);
 
 			 if(stripos($key, $this->hidden_folder) === false)
-		    	$p[$key] = $page['title'];
+		    	$p[$key] = $page['title']==""? "*Untitled page ".$tmp++ : $page['title'];
 			 else
-			 	$p2[$key] = $page['title'];
+			 	$p2[$key] = $page['title']==""? "*Untitled page ".$tmp++ : $page['title'];
       }
 
 		ksort ( $p, SORT_STRING);
@@ -55,30 +63,33 @@ class mcb_HtmlSitemap {
 		}
 
       $sitemap = "<ul>";
+		
+		$this->tmp[] = $p;
+		
 		foreach($p as $url => $title)
 		{
 			$url = $url == "0" ? "" : $url;
 			$level = count(explode( "/", $url));
-			$sitemap .= "<li class=\"level$level\"> <a href=\"$base_url/$url\">$title</a></li>\n";
+			$sitemap .= "<li class=\"level$level\"> <a href=\"$url\">$title</a></li>\n";
 		}
 
 		$this->content .= $sitemap . "</ul>";
 	}
 
-	public function after_404_load_content(&$file, &$content)
+	public function on404ContentLoaded(&$rawContent)
 	{
 	   if(!$this->url_is_sitemap)
          return;
 
-		$content = "";
+		$rawContent = "";
 	}
 
-	public function after_parse_content(&$content)
+	public function onContentParsed(&$content)
 	{
 		$this->content = &$content;
 	}
 	/* debug
-	public function after_render(&$output)
+	public function onPageRendered(&$output)
 	{
 		$output = $output . "<pre style=\"background-color:white;\">".htmlentities(print_r($this,1))."</pre>";
 	}*/
