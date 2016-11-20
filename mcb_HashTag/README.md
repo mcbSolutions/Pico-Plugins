@@ -3,27 +3,39 @@ HashTag
 
 Released under the [MIT license](http://opensource.org/licenses/MIT). Copyright (c) 2013 mcbSolutions.at
 
-**Version** 0.3; Please report errors.
+**Version** 0.4; Please report errors.
 
 **Highlites #hashtags in your site**
+
+Known bugs
+======================================================================
++ Letters for all languages not working properly. Added workaround for `äöüÄÖÜáàéèìíóòúùâêîôû`
+
 
 Installation
 ======================================================================
 1. Copy/save the plugin into `plugins` folder
-2. Format `.hashtag` class in your css file
+2. Format `.hashtag` and the `.twitteraccount` class in your css file
+3. **Optional:** Copy `Test.md` to the content folder for see in action
 
 style.css
 -----------------------------------------------------------------------------
-    .hashtag {
-       margin-left: 0.3em;
-       margin-right: 0.3em;
-       background-color:#2EAE9B;
-       padding-left: 0.3em;
-       padding-right: 0.3em;
-       color:white;
-       -moz-border-radius: 5px;
-       border-radius: 5px;
-    }
+~~~~{.css}
+.hashtag, .twitteraccount {
+   margin-left: 0.3em;
+   margin-right: 0.3em;
+   background-color:#2EAE9B;
+   padding-left: 0.3em;
+   padding-right: 0.3em;
+   color:white;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+
+.twitteraccount {
+	background-color:lightblue;
+}
+~~~~
 
 Optional: config
 -----------------------------------------------------------------------------
@@ -43,6 +55,16 @@ Default is `false`.
 
 	$config['mcb_hashtag_remove_hash'] = true;
 
+
+### mcb_hashtag_lang
+**string**
+Language to display the user account at twitter.com.
+Default is `de`
+
+	$config['mcb_hashtag_lang'] = "en";
+
+
+
 Screenshot
 ======================================================================
-![Screenshot of Html Sitemap](./Screenshot.png)
+![Screenshot of renderd page with hashtags](./Screenshot.png)

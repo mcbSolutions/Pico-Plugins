@@ -1,0 +1,17 @@
+
+/* Pico-Plugin: mcb_Hashtag */
+.hashtag, .twitteraccount {
+   margin-left: 0.3em;
+   margin-right: 0.3em;
+   text-decoration: none;
+   background-color:rgb(57,197,251);
+   padding-left: 0.3em;
+   padding-right: 0.3em;
+   color:white;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+
+.twitteraccount {
+   background-color:lightblue;
+}
