@@ -62,10 +62,10 @@ class mcb_HashTag extends AbstractPicoPlugin {
 								, "<a$href$title class=\"twitteraccount\">@\$1</a>"
 								, $content);
 	}
-	/* debug*/
+	/* debug
    public function onPageRendered(&$output)
 	{
 		$output = $output . "<pre style=\"background-color:white;\">".htmlentities(print_r($this,1))."</pre>";
-	}
+	}*/
 }
 ?>
