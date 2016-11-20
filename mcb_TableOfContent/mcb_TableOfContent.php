@@ -15,7 +15,7 @@
  *       + Removed some parameters
  *       + Added the test page
  */
-class mcb_TableOfContent {
+class mcb_TableOfContent extends AbstractPicoPlugin {
 
    // default settings
    private $depth       = 3;
@@ -48,12 +48,12 @@ class mcb_TableOfContent {
       return '<div id="toc">'.$cap.'<ul>'.$heads.'</ul></div>';
    }
 
-   public function config_loaded(&$settings)
+   public function onConfigLoaded(&$config)
    {
-      if(isset($settings['mcb_toc_depth'      ])) $this->depth       = &$settings['mcb_toc_depth'];
-      if(isset($settings['mcb_toc_min_headers'])) $this->min_headers = &$settings['mcb_toc_min_headers'];
-      if(isset($settings['mcb_toc_top_txt'    ])) $this->top_txt     = &$settings['mcb_toc_top_txt'];
-      if(isset($settings['mcb_toc_caption'    ])) $this->caption     = &$settings['mcb_toc_caption'];
+      if(isset($config['mcb_toc_depth'      ])) $this->depth       = &$config['mcb_toc_depth'];
+      if(isset($config['mcb_toc_min_headers'])) $this->min_headers = &$config['mcb_toc_min_headers'];
+      if(isset($config['mcb_toc_top_txt'    ])) $this->top_txt     = &$config['mcb_toc_top_txt'];
+      if(isset($config['mcb_toc_caption'    ])) $this->caption     = &$config['mcb_toc_caption'];
 
       for ($i=1; $i <= $this->depth; $i++) {
          $this->xpQuery[] = "//h$i";
@@ -61,7 +61,7 @@ class mcb_TableOfContent {
       $this->xpQuery = join("|", $this->xpQuery);
    }
 
-   public function after_parse_content(&$content)
+	public function onContentParsed(&$content)
    {
       if(trim($content)=="")
         return;
@@ -128,14 +128,14 @@ class mcb_TableOfContent {
       $this->toc = $this->makeToc($content);
    }
 
-   public function before_render(&$twig_vars, &$twig)
+   public function onPageRendering(&$twig, &$twigVariables, &$templateName)
    {
-      $twig_vars['mcb_toc'    ] = $this->toc;
-      $twig_vars['mcb_toc_top'] = '<a name="top"></a>';
+      $twigVariables['mcb_toc'    ] = $this->toc;
+      $twigVariables['mcb_toc_top'] = '<a name="top"></a>';
    }
 
    /* debug
-   public function after_render(&$output)
+   public function onPageRendered(&$output)
    {
       $output = $output . "<pre style=\"background-color:white;\">".htmlentities(print_r($this,1))."</pre>";
    }*/
