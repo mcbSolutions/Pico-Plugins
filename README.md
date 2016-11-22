@@ -21,6 +21,8 @@ via .htaccess or php.ini.*
 
 [ClearTwigCache](./mcb_ClearTwigCache/) - *Clears the cache of twig*  
 
+[Apache Info](./mcb_ApacheInfo/) - *Displays the `apache_get_version()`, `apache_get_modules()`, `apache_request_headers()` and `apache_response_headers()`  within you site.*
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 [More Plugins](https://github.com/gilbitron/Pico/wiki/Pico-Plugins) from other users.  
