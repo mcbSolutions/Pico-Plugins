@@ -4,7 +4,7 @@
  *
  * @package Pico
  * @subpackage mcb_HashTag
- * @version 0.4
+ * @version 0.5
  * @author mcbSolutions.at <dev@mcbsolutions.at>
  *
  * ## Changelog
@@ -12,6 +12,7 @@
  * 	+ 2015-11-07 Upgrade to AbstractPicoPlugin for Pico 1.0
  *    + 2016-11-17 Added support for twitter user names
  *    + 2016-11-19 Better support to almost match twitter specification
+ *    + 2016-11-22 MacPort version number was shown as a user account
  */
 class mcb_HashTag extends AbstractPicoPlugin {
 
@@ -58,7 +59,7 @@ class mcb_HashTag extends AbstractPicoPlugin {
       $href = " href=\"$this->profileUrl\$1&lang=$this->lang\"";
       $title = " title=\"Twitter Benutzer\"";
 
-		$content = preg_replace ( '/(?s)<pre[^<]*>.*?<\\/pre>(*SKIP)(*F)|(?!<![\'"])\s+@+([[:alnum:]_äöüÄÖÜáàéèìíóòúùâêîôû]*)(?![\'"])/i'
+		$content = preg_replace ( '/(?s)<pre[^<]*>.*?<\\/pre>(*SKIP)(*F)|(?!<![\'"])\s+@+([[:alnum:]_äöüÄÖÜáàéèìíóòúùâêîôû]*)(?![\w\'"\.])/i'
 								, "<a$href$title class=\"twitteraccount\">@\$1</a>"
 								, $content);
 	}

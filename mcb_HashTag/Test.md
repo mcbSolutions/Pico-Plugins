@@ -48,9 +48,12 @@ Useful for validating a text input (an HTML form in your CMS or custom applicati
 + Already linked: <a href="https://mcbsolutions.at">#linked</a>
 + #abcdefghij0123456789abcdefghij0123456789abcdefghij0123456789abcdefghij0123456789abcdefghij0123456789abcdefghij0123456789abcdefghij0123456789 - more than 140 characters
 + dev@mcbSolutions.at - Email
++ automake @1.14.1_2 - Version number
 ~~~~
 
 ### Rendered
+
+**Note:** Nothing should be tagged.
 
 + Two hashes: ##hashtag
 + With minus: #hash-tag
@@ -59,7 +62,8 @@ Useful for validating a text input (an HTML form in your CMS or custom applicati
 + Quoted: '#i', "#i"
 + Already linked: <a href="https://mcbsolutions.at">#linked</a>
 + Lorem #abcdefghij0123456789abcdefghij0123456789abcdefghij0123456789abcdefghij0123456789abcdefghij0123456789abcdefghij0123456789abcdefghij0123456789 - more than 140 characters
-+ Lorem dev@mcbSolutions.at - Email
++ dev@mcbSolutions.at - Email
++ automake @1.14.1_2 - Version number
 
 
 ## Test for ...
